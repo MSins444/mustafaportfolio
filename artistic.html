@@ -382,6 +382,17 @@
   window.addEventListener('keydown', e=>{
     if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeOverlay();
   });
+
+  <script>
+  document.querySelectorAll('img').forEach(img=>{
+    img.addEventListener('error', function(){
+      console.warn('Image failed:', this.getAttribute('src'));
+      this.src = 'assets/img/placeholder.jpg';
+      this.alt = (this.alt || 'Image') + ' (placeholder shown)';
+    });
+  });
+</script>
+
 </script>
 </body>
 </html>
