@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Mustafa — Artistic Portfolio</title>
+  <meta name="description" content="Immersive portfolio of Mustafa Moumouni — Screenwriter & Emerging Software Developer. Original code, stories, and fashion.">
+  <meta name="theme-color" content="#111111">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Mustafa — Artistic Portfolio">
+  <meta property="og:description" content="I craft everything from scratch—code, stories, and fashion. Explore projects, films, and design.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og/preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.png" sizes="192x192">
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Inline CSS -->
+  <style>
+    :root{
+      --bg:#0b0b0c; --panel:#141417; --soft:#1b1b20;
+      --text:#ececf0; --muted:#b7b7c2; --accent:#34e1ce; --accent-2:#ff6b6b;
+      --max:1100px; --radius:16px; --shadow:0 6px 28px rgba(0,0,0,.35);
+      --border:#23232a;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%;height:auto;display:block}
+    .sr-only{position:absolute !important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+
+    /* Layout */
+    .container{max-width:var(--max);margin-inline:auto;padding:20px}
+    header{
+      position:sticky;top:0;z-index:50;
+      background:linear-gradient(0deg, rgba(11,11,12,.6), rgba(11,11,12,.95));
+      backdrop-filter:saturate(120%) blur(6px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex;align-items:center;gap:14px;justify-content:space-between}
+    .brand{font-weight:700;letter-spacing:.2px}
+    .nav-wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .nav-wrap a{padding:8px 10px;border-radius:10px;color:var(--text)}
+    .nav-wrap a:hover{background:var(--soft)}
+    .accent{background:var(--accent);color:#0a0b0b;border:0;padding:8px 12px;border-radius:12px;font-weight:600;cursor:pointer}
+    .accent:hover{filter:brightness(1.05)}
+    .btn{display:inline-block;background:var(--accent);color:#0a0b0b;padding:12px 16px;border-radius:12px;font-weight:600;box-shadow:var(--shadow)}
+    .btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .btn.danger{background:var(--accent-2);color:#0b0b0c}
+    .badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#212127;color:#cfcfe6;border:1px solid #2a2a35;font-size:.82rem}
+    .muted{color:var(--muted)}
+    h1,h2,h3,h4{line-height:1.2}
+    h1{font-size:clamp(28px,4vw,42px);margin:8px 0 12px}
+    h2{font-size:clamp(22px,3vw,30px);margin:24px 0 12px}
+    h3{font-size:clamp(18px,2.4vw,22px);margin:6px 0 8px}
+    p{color:#d9d9e2}
+    ul{margin:8px 0 0 18px}
+    footer{border-top:1px solid var(--border);background:#0c0c0f}
+
+    /* Sections */
+    .hero{padding:40px 0 10px;display:grid;gap:14px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Cards + grids */
+    .card{
+      background:linear-gradient(180deg,#121215,#0e0e12);
+      border:1px solid var(--border);border-radius:var(--radius);
+      padding:16px;box-shadow:var(--shadow)
+    }
+    .grid{display:grid;gap:12px}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+    .card[data-primary-href]{transition:transform .18s ease, border-color .18s ease;cursor:pointer}
+    .card[data-primary-href]:hover{transform:translateY(-2px);border-color:#2f2f3a}
+
+    .list{margin:6px 0 8px}
+    .meta{font-size:.92rem;color:var(--muted);margin-top:6px}
+    .meta a{color:#cfd0ff}
+
+    /* Visuals */
+    .poster{
+      border-radius:12px;margin-top:12px;width:100%;height:400px;object-fit:cover;
+    }
+    @media (max-width:600px){ .poster{height:320px} }
+    .thumb{
+      border-radius:12px;margin-bottom:12px;width:100%;height:340px;object-fit:cover;
+    }
+
+    /* Overlay (Game Mode) — optional */
+    .overlay{position:fixed;inset:0;background:rgba(8,8,10,.75);
+      backdrop-filter:blur(8px) saturate(140%);display:none;align-items:center;justify-content:center;padding:16px;}
+    .overlay[aria-hidden="false"]{display:flex}
+    .game-wrap{width:min(860px,100%);background:#0f0f12;border:1px solid var(--border);border-radius:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden}
+    .game-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);background:#121219}
+    .game-title{font-weight:700}
+    .close-btn{background:transparent;border:1px solid #333649;border-radius:10px;color:#cfd0df;padding:8px 10px;cursor:pointer}
+    .game{padding:16px;display:grid;gap:12px}
+    .moves{display:flex;gap:8px;flex-wrap:wrap}
+    .moves button{background:#1b1b22;color:#e8e8f6;border:1px solid #333649;border-radius:12px;padding:10px 14px;cursor:pointer}
+    .moves button:hover{border-color:#4a4e63}
+    .result{min-height:28px}
+    .game-links{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Focus */
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+
+    .switch{color:#b7b7c2;font-size:.95rem;padding:8px 10px;border:1px solid #2a2a35;border-radius:10px;}
+    .switch:hover{text-decoration:none;background:#1b1b20}
+  </style>
+</head>
+<body>
+<a href="#main" class="sr-only">Skip to content</a>
+
+<header>
+  <div class="container nav">
+    <div class="brand">Mustafa Moumouni</div>
+    <nav class="nav-wrap" aria-label="Primary">
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="accent" id="openGame" type="button">Play Game Mode</button>
+      <a class="switch" href="index.html" id="switchMode">Switch experience</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Mustafa Moumouni</h1>
+    <p><span class="badge">Screenwriter & Emerging Software Developer</span></p>
+    <p>
+      I build everything from scratch — code, stories, and fashion. With a BFA in Screenwriting,
+      certificates in Software Engineering Basics and IT Support, and hands-on skills in HTML, CSS,
+      and JavaScript, I merge narrative craft with technical design to create immersive experiences
+      entirely my own.
+    </p>
+    <div class="cta">
+      <a class="btn" href="#projects">View Projects</a>
+      <a class="btn secondary" href="#writing">Read Screenplays</a>
+      <a class="btn secondary" href="assets/docs/MM_resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" aria-labelledby="projects-h2">
+    <h2 id="projects-h2">Projects</h2>
+
+    <!-- SOFTWARE PROJECTS (add your existing cards here if desired) -->
+    <!-- Example container left for future software items -->
+    <!-- <div class="card" style="margin-bottom:14px;">
+      <h3>Software Projects</h3>
+      <div class="grid grid-3"> ... </div>
+    </div> -->
+
+    <!-- CREATIVE PROJECTS -->
+    <div class="card">
+      <h3>Creative Projects (Film, Sound, Fashion)</h3>
+      <div class="grid grid-3">
+
+        <!-- Sins of the Past — Fashion Website -->
+        <article class="card" data-primary-href="https://sinsofthepast.store" tabindex="0" role="button" aria-label="Open Sins of the Past landing page">
+          <img src="assets/img/sins.jpg" alt="Landing page of Sins of the Past — luxury fashion brand" class="thumb" loading="lazy">
+          <h4>Sins of the Past — Fashion Website (Landing)</h4>
+          <ul class="list">
+            <li>Hand-coded from scratch with semantic HTML, CSS, and light JavaScript (mobile-first).</li>
+            <li>All clothing designs are original — conceived and produced solely by me.</li>
+            <li>Built-in arcade mini-game awards promotions (e.g., 10% off) to boost engagement.</li>
+          </ul>
+          <p class="meta">
+            <a href="https://sinsofthepast.store" target="_blank" rel="noopener">Live Site</a> •
+            <span class="badge">Next</span> Product detail pages + immersive lookbook transitions
+          </p>
+        </article>
+
+        <!-- Short Film -->
+        <article class="card" data-primary-href="https://youtu.be/tMD30rRO7-s" tabindex="0" role="button" aria-label="Open Short Film teaser">
+          <h4>Short Film — Picture &amp; Sound Edit</h4>
+          <ul class="list">
+            <li>Edited in Adobe Premiere Pro; dialogue cleanup &amp; mix in Audition.</li>
+            <li>Coordinated cut versions, exports, and delivery under deadlines.</li>
+            <li><span class="badge">Transferable</span> Versioning, attention to detail, collaboration.</li>
+          </ul>
+          <p class="meta">
+            <a href="https://youtu.be/tMD30rRO7-s" target="_blank" rel="noopener">Teaser</a> •
+            <a href="https://vimeo.com/YOUR_BEHIND_THE_EDIT" target="_blank" rel="noopener">Behind the Edit</a>
+          </p>
+        </article>
+
+        <!-- Soundscape Jurassic Park -->
+        <article class="card" data-primary-href="https://youtu.be/7oJRyW-4iGU" tabindex="0" role="button" aria-label="Open Soundscape clip">
+          <h4>Soundscape Jurassic Park Video (complete sound design)</h4>
+          <ul class="list">
+            <li>Every sound designed and layered by me.</li>
+            <li>Rhythm-based cutting to drive narrative and performance flow.</li>
+            <li><span class="badge">Transferable</span> Visual pacing, UX intuition, polish.</li>
+          </ul>
+          <p class="meta">
+            <a href="https://youtu.be/7oJRyW-4iGU" target="_blank" rel="noopener">Clip</a> •
+            <a href="assets/docs/music-video-process-notes.pdf" target="_blank" rel="noopener">Process Notes (PDF)</a>
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section id="writing" aria-labelledby="writing-h2">
+    <h2 id="writing-h2">Screenwriting</h2>
+    <div class="grid">
+
+      <!-- The Last Witness -->
+      <article class="card" data-primary-href="assets/docs/The Last Witness.pdf" tabindex="0" role="button" aria-label="Open The Last Witness sample">
+        <h3>THE LAST WITNESS (110 pages)</h3>
+        <p><strong>Logline:</strong> A reclusive artist with a photographic memory becomes the personal painter to a ruthless mob boss. When her canvases reveal hidden clues to his crimes, she partners with a disgraced federal marshal—risking her life to bring him down.</p>
+        <p class="meta">
+          <a href="assets/docs/The Last Witness.pdf" target="_blank" rel="noopener">Read Sample (PDF)</a> •
+          <a href="mailto:you@example.com">Request Full</a>
+        </p>
+        <img src="assets/img/lastwitness.jpg" alt="Poster for The Last Witness" class="poster" loading="lazy">
+      </article>
+
+      <!-- L.I.F.E -->
+      <article class="card" data-primary-href="assets/docs/LIFE(Love Isnt for Everyone) Screenplay Sample.pdf" tabindex="0" role="button" aria-label="Open L.I.F.E screenplay sample">
+        <h3>L.I.F.E (LOVE ISN'T FOR EVERYONE) — Film (60 pages)</h3>
+        <p><strong>Logline:</strong> After heartbreak and expulsion leave him with nothing, a desperate college student falls under the spell of CELL, a beguiling woman who pulls him into the high-stakes world of drug dealing—until he realizes that escaping her grip may cost him everything.</p>
+        <p class="meta">
+          <a href="assets/docs/LIFE(Love Isnt for Everyone) Screenplay Sample.pdf" target="_blank" rel="noopener">Read Sample (PDF)</a> •
+          <a href="mailto:you@example.com">Request Full</a>
+        </p>
+        <img src="assets/img/lifeposter.png" alt="Poster for L.I.F.E (Love Isn't for Everyone)" class="poster" loading="lazy">
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-h2">
+    <h2 id="about-h2">About</h2>
+    <div class="card">
+      <p>I’m a screenwriter transitioning into software engineering. My writing background fuels strong narrative thinking, collaboration, and revision discipline; coding lets me apply those strengths to interactive experiences.</p>
+      <p><strong>Tech:</strong> HTML, CSS, JavaScript • VS Code, Git/GitHub • Adobe Creative Suite (Premiere Pro, Audition, Photoshop)</p>
+      <p><strong>Currently learning:</strong> DOM manipulation, arrays/objects, fetch APIs</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contact-h2">
+    <h2 id="contact-h2">Contact &amp; Résumé</h2>
+    <div class="card">
+      <p>
+        <strong>Email:</strong> <a href="mailto:mmoumouni@columbiacollege.edu">mmoumouni@columbiacollege.edu</a><br />
+        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/joshua-mumuni-b38801212/" target="_blank" rel="noopener">LinkedIn Profile</a><br />
+        <strong>Résumé:</strong> <a href="assets/docs/MM_resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">© <span id="yr"></span> Mustafa Moumouni • Professional portfolio with optional game mode.</div>
+</footer>
+
+<!-- OPTIONAL: Game Mode Overlay (kept minimal so the button works) -->
+<div class="overlay" id="overlay" aria-hidden="true" role="dialog" aria-label="Game Mode">
+  <div class="game-wrap" role="document">
+    <div class="game-head">
+      <div class="game-title">Game Mode — Rock • Paper • Scissors</div>
+      <button class="close-btn" id="closeGame" type="button" aria-label="Close game mode">Close ✕</button>
+    </div>
+    <div class="game">
+      <p class="muted">Win a quick round to unlock a fun message—or <a href="#" id="skipGame">skip</a>.</p>
+      <div class="moves" role="group" aria-label="Choose your move">
+        <button data-move="rock" type="button">Rock 🪨</button>
+        <button data-move="paper" type="button">Paper 📄</button>
+        <button data-move="scissors" type="button">Scissors ✂️</button>
+      </div>
+      <div id="log" class="result" aria-live="polite">Choose your move to begin.</div>
+      <div class="game-links">
+        <a class="btn secondary" href="#projects" id="toProjects">Projects</a>
+        <a class="btn secondary" href="#writing" id="toWriting">Writing</a>
+        <a class="btn danger" href="assets/docs/MM_resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Stamp year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Remember we're in Artistic mode (if you use the landing chooser)
+  try { localStorage.setItem('mm_mode','art'); } catch(e){}
+
+  // Make cards clickable (but let inner links work)
+  document.querySelectorAll('[data-primary-href]').forEach(card=>{
+    const url = card.getAttribute('data-primary-href');
+    card.addEventListener('click', e=>{
+      if(e.target.closest('a, button')) return;
+      window.open(url, '_blank', 'noopener');
+    });
+    card.addEventListener('keydown', e=>{
+      if(e.key==='Enter' || e.key===' '){
+        e.preventDefault();
+        window.open(url, '_blank', 'noopener');
+      }
+    });
+  });
+
+  // Switch experience clears preference
+  document.getElementById('switchMode').addEventListener('click', ()=>{
+    try { localStorage.removeItem('mm_mode'); } catch(e){}
+  });
+
+  // ===== Minimal Game Mode so the header button works =====
+  const overlay = document.getElementById('overlay');
+  const openBtn = document.getElementById('openGame');
+  const closeBtn = document.getElementById('closeGame');
+  const skipLink = document.getElementById('skipGame');
+  const log = document.getElementById('log');
+  const moveBtns = Array.from(document.querySelectorAll('.moves [data-move]'));
+  let lastFocus = null;
+
+  function openOverlay(){
+    lastFocus = document.activeElement;
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    moveBtns[0].focus();
+  }
+  function closeOverlay(){
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(lastFocus) lastFocus.focus();
+  }
+  openBtn.addEventListener('click', openOverlay);
+  closeBtn.addEventListener('click', closeOverlay);
+  skipLink.addEventListener('click', e=>{ e.preventDefault(); closeOverlay(); });
+
+  const beats = {rock:'scissors', paper:'rock', scissors:'paper'};
+  function ai(){ return ['rock','paper','scissors'][Math.floor(Math.random()*3)]; }
+  function play(user){
+    const bot = ai();
+    let msg = `You chose ${user} • AI chose ${bot}. `;
+    if(user===bot){ msg += 'Tie. Try again!'; }
+    else if(beats[user]===bot){ msg += 'You win! Enjoy the portfolio.'; }
+    else { msg += 'AI wins! One more?'; }
+    log.textContent = msg;
+  }
+  moveBtns.forEach(b=> b.addEventListener('click', ()=> play(b.dataset.move)));
+
+  window.addEventListener('keydown', e=>{
+    if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeOverlay();
+  });
+</script>
+</body>
+</html>

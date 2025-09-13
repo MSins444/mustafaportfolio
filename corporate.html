@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mustafa Moumouni — Corporate Profile</title>
+  <meta name="description" content="Streamlined profile with skills, selected projects, and writing samples."/>
+  <style>
+    :root{--ink:#141414;--muted:#555;--line:#e6e6e6;--accent:#0d9488;--bg:#fff}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--line);padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+    .wrap{max-width:960px;margin:auto;padding:20px}
+    h1{margin:.2rem 0 0;font-size:clamp(22px,3.5vw,30px)}
+    h2{margin:1.2rem 0 .6rem;font-size:1.1rem}
+    .grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid var(--line);border-radius:10px;padding:14px}
+    .minor{color:var(--muted);font-size:.95rem}
+    .btn{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:8px}
+    ul{margin:0 0 0 18px}
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Mustafa Moumouni — Corporate</strong>
+    <a class="minor" href="index.html" onclick="localStorage.removeItem('mm_mode')">Switch experience</a>
+  </header>
+
+  <div class="wrap">
+    <h1>Screenwriter & Emerging Software Developer</h1>
+    <p class="minor">
+      Los Angeles, CA ·
+      <a href="mailto:mmoumouni@columbiacollege.edu">mmoumouni@columbiacollege.edu</a> ·
+      <a href="https://www.linkedin.com/in/joshua-mumuni-b38801212/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="assets/docs/MM_resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+    </p>
+
+    <section class="card">
+      <h2>Summary</h2>
+      <p class="minor">
+        I build from scratch — code, stories, and fashion. BFA in Screenwriting with certificates in
+        Software Engineering Basics and IT Support. Hands-on with HTML, CSS, and JavaScript; strong editing,
+        collaboration, and deadline discipline.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Core Skills</h2>
+        <ul>
+          <li>HTML, CSS, JavaScript</li>
+          <li>Version control: Git & GitHub</li>
+          <li>Adobe: Premiere Pro, Audition, Photoshop</li>
+          <li>Soft skills: editing, collaboration, delivery under deadlines</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>Selected Projects</h2>
+        <ul>
+          <li><strong>Rock–Paper–Scissors</strong> — 3-round browser game (JS)</li>
+          <li><strong>Fashion Site Page</strong> — semantic HTML/CSS/JS</li>
+          <li><strong>CSS Color Cheat Sheet</strong> — HTML + exportable PDF</li>
+          <li><strong>Sins of the Past</strong> — hand-coded fashion landing with arcade promo</li>
+        </ul>
+        <p>
+          <a class="btn" href="projects/rps/index.html" target="_blank" rel="noopener">RPS Demo</a>
+          <a class="btn" href="projects/recipe/index.html" target="_blank" rel="noopener">Fashion Page</a>
+          <a class="btn" href="projects/css-colors/index.html" target="_blank" rel="noopener">Color Sheet</a>
+          <a class="btn" href="https://sinsofthepast.store" target="_blank" rel="noopener">Sins of the Past</a>
+        </p>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Writing Samples</h2>
+      <p>
+        <a href="assets/docs/LIFE(Love Isnt for Everyone) Screenplay Sample.pdf" target="_blank" rel="noopener">L.I.F.E — sample (PDF)</a> ·
+        <a href="assets/docs/The Last Witness.pdf" target="_blank" rel="noopener">The Last Witness — sample (PDF)</a>
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Contact</h2>
+      <p class="minor">
+        Email: <a href="mailto:mmoumouni@columbiacollege.edu">mmoumouni@columbiacollege.edu</a><br/>
+        LinkedIn: <a href="https://www.linkedin.com/in/joshua-mumuni-b38801212/" target="_blank" rel="noopener">linkedin.com/in/joshua-mumuni-b38801212/</a><br/>
+        Résumé: <a href="assets/docs/MM_resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+      </p>
+    </section>
+  </div>
+</body>
+</html>

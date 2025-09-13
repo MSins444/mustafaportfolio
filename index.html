@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mustafa Moumouni — Choose Your Experience</title>
+  <meta name="description" content="Choose between Artistic (immersive) or Corporate (streamlined) versions of my portfolio."/>
+  <meta name="theme-color" content="#0b0b0c">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#0b0b0c; --ink:#ececf0; --muted:#b7b7c2;
+      --glass:#141418cc; --line:#262631;
+      --accent:#34e1ce; --hot:#ff6b6b; --radius:18px; --max:900px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{min-height:100%;display:grid;place-items:center;padding:24px}
+    .card{width:min(100%,var(--max));background:linear-gradient(180deg,#0f0f12,#0b0b0f);
+      border:1px solid var(--line); border-radius:var(--radius); box-shadow:0 20px 60px rgba(0,0,0,.5);
+      overflow:hidden; position:relative; isolation:isolate}
+    .grid{display:grid;grid-template-columns:1fr 1fr}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}}
+    header{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .hint{color:var(--muted);font-size:.95rem}
+    .pane{position:relative;padding:28px;display:grid;gap:14px;min-height:300px;border-right:1px solid var(--line);cursor:pointer}
+    .pane:last-child{border-right:0}
+    .pane h2{margin:0;font-size:clamp(22px,3vw,28px)}
+    .pane p{margin:0;color:#d7d7e2}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{background:#1b1b22;border:1px solid #343646;color:#f0f0ff;padding:12px 16px;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn:hover{border-color:#4a4e63}
+    .btn.accent{background:var(--accent);color:#051414;border:0}
+    .btn.hot{background:var(--hot);color:#140909;border:0}
+    .minor{font-size:.9rem;color:var(--muted)}
+    footer{padding:16px 20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
+    /* Decorative background */
+    .fx{position:absolute; inset:-20%; z-index:-1; opacity:.25;
+      background:
+        radial-gradient(60% 40% at 20% 20%, #34e1ce33, transparent 60%),
+        radial-gradient(40% 60% at 80% 70%, #ff6b6b33, transparent 60%);
+      filter:blur(40px); animation:float 12s ease-in-out infinite alternate; }
+    @keyframes float{from{transform:translateY(-10px)} to{transform:translateY(10px)}}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px}
+    @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+    /* ===== Mini-game overlay ===== */
+    .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:16px;
+      background:rgba(8,8,10,.75); backdrop-filter:blur(8px) saturate(140%);}
+    .overlay[aria-hidden="false"]{display:flex}
+    .game-wrap{width:min(760px,100%);background:#0f0f12;border:1px solid #2b2b36;border-radius:18px;
+      box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden}
+    .game-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #2a2a35;background:#121219}
+    .game-title{font-weight:800}
+    .close-btn{background:transparent;border:1px solid #333649;border-radius:10px;color:#cfd0df;padding:8px 10px;cursor:pointer}
+    .game{padding:16px;display:grid;gap:12px}
+    .moves{display:flex;gap:8px;flex-wrap:wrap}
+    .moves button{background:#1b1b22;color:#e8e8f6;border:1px solid #333649;border-radius:12px;padding:10px 14px;cursor:pointer}
+    .moves button:hover{border-color:#4a4e63}
+    .result{min-height:28px}
+    .game-links{display:flex;gap:10px;flex-wrap:wrap}
+    .skip{margin-left:auto}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" role="application">
+    <div class="fx" aria-hidden="true"></div>
+
+    <header>
+      <div class="brand">Mustafa Moumouni</div>
+      <div class="hint">Press <strong>A</strong> for Artistic • <strong>C</strong> for Corporate</div>
+    </header>
+
+    <div class="grid" role="group" aria-label="Choose your experience">
+      <!-- Artistic -->
+      <section class="pane" id="artPane" aria-labelledby="artTitle">
+        <h2 id="artTitle">Artistic — immersive</h2>
+        <p>Animated, cinematic portfolio. Music/film/fashion flavor with interactive bits.</p>
+        <div class="cta">
+          <button class="btn hot" id="goArt" type="button">Enter Artistic</button>
+          <a class="btn" href="artistic.html" id="previewArt">Preview page</a>
+        </div>
+        <span class="minor">Keyboard: press A</span>
+      </section>
+
+      <!-- Corporate -->
+      <section class="pane" id="corpPane" aria-labelledby="corpTitle">
+        <h2 id="corpTitle">Corporate — streamlined</h2>
+        <p>Fast, clean profile for recruiters and ATS. No motion, straight to work samples.</p>
+        <div class="cta">
+          <a class="btn accent" href="corporate.html" id="goCorp">Enter Corporate</a>
+        </div>
+        <span class="minor">Keyboard: press C</span>
+      </section>
+    </div>
+
+    <footer>
+      <span class="minor">© <span id="yr"></span> Mustafa Moumouni</span>
+      <span class="minor">Choice is remembered only after winning or skipping game</span>
+    </footer>
+  </div>
+</div>
+
+<!-- ===== Rock • Paper • Scythe overlay ===== -->
+<div class="overlay" id="overlay" aria-hidden="true" role="dialog" aria-label="Game Mode">
+  <div class="game-wrap" role="document">
+    <div class="game-head">
+      <div class="game-title">Mini Game — Rock • Paper • Scythe</div>
+      <button class="close-btn" id="closeGame" type="button" aria-label="Close game">Close ✕</button>
+    </div>
+    <div class="game">
+      <p class="minor">Win a quick round to enter Artistic — or <a href="#" id="skipGame">skip</a> if you’re in a hurry.</p>
+      <div class="moves" role="group" aria-label="Choose your move">
+        <button data-move="rock" type="button">Rock 🪨</button>
+        <button data-move="paper" type="button">Paper 📄</button>
+        <button data-move="scythe" type="button">Scythe 🗡️</button>
+        <a class="btn skip" href="#" id="skipGameBtn">Skip →</a>
+      </div>
+      <div id="log" class="result" aria-live="polite">Choose your move to begin.</div>
+      <div class="game-links">
+        <small class="minor">Rules: Rock beats Scythe • Scythe beats Paper • Paper beats Rock.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // === Config your target pages here
+  const ART_URL  = 'artistic.html';
+  const CORP_URL = 'corporate.html';
+
+  // Year stamp
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Elements
+  const overlay   = document.getElementById('overlay');
+  const goArtBtn  = document.getElementById('goArt');
+  const previewArt= document.getElementById('previewArt');
+  const closeBtn  = document.getElementById('closeGame');
+  const skipA     = document.getElementById('skipGame');
+  const skipBtn   = document.getElementById('skipGameBtn');
+  const log       = document.getElementById('log');
+
+  // Open mini-game instead of direct navigation
+  function openGame(){
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    // focus first move
+    const first = overlay.querySelector('[data-move]');
+    if (first) first.focus();
+  }
+  function closeGame(){
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    goArtBtn.focus();
+  }
+
+  goArtBtn.addEventListener('click', (e)=>{ e.preventDefault(); openGame(); });
+  closeBtn.addEventListener('click', closeGame);
+  skipA.addEventListener('click', (e)=>{ e.preventDefault(); enterArt('skip'); });
+  skipBtn.addEventListener('click', (e)=>{ e.preventDefault(); enterArt('skip'); });
+
+  // Keyboard shortcuts for panes
+  window.addEventListener('keydown', (e)=>{
+    const k = e.key.toLowerCase();
+    if(k==='a') openGame();
+    if(k==='c') window.location.href = CORP_URL;
+    if(k==='escape' && overlay.getAttribute('aria-hidden')==='false') closeGame();
+  });
+
+  // Make whole panes clickable (but keep inner buttons/links as-is)
+  document.getElementById('artPane').addEventListener('click', (e)=>{
+    if(!e.target.closest('a,button')) openGame();
+  });
+  document.getElementById('corpPane').addEventListener('click', (e)=>{
+    if(!e.target.closest('a,button')) window.location.href = CORP_URL;
+  });
+
+  // ===== Rock • Paper • Scythe logic
+  const beats = { rock:'scythe', scythe:'paper', paper:'rock' };
+  function ai(){ return ['rock','paper','scythe'][Math.floor(Math.random()*3)]; }
+
+  function play(user){
+    const bot = ai();
+    let msg = `You chose ${user} • AI chose ${bot}. `;
+    if(user===bot){ msg += 'Tie. Try again!'; }
+    else if(beats[user]===bot){
+      msg += 'You win! Entering Artistic…';
+      enterArt('win');
+    }else{
+      msg += 'AI wins! One more?';
+    }
+    log.textContent = msg;
+  }
+
+  Array.from(document.querySelectorAll('.moves [data-move]'))
+    .forEach(b => b.addEventListener('click', ()=> play(b.dataset.move)));
+
+  // Enter Artistic (after win or skip)
+  function enterArt(reason){
+    try { localStorage.setItem('mm_mode','art'); } catch(e){}
+    window.location.href = ART_URL;
+  }
+</script>
+</body>
+</html>
